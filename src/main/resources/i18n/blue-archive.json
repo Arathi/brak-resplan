@@ -1,0 +1,52 @@
+{
+  "school.Abydos": "阿拜多斯",
+  "school.Arius": "阿里乌斯",
+  "school.Gehenna": "歌赫娜",
+  "school.Hyakkiyako": "百鬼夜行",
+  "school.Millennium": "千禧年",
+  "school.RedWinter": "红冬",
+  "school.Shanhaijing": "山海经",
+  "school.SRT": "SRT",
+  "school.Trinity": "崔尼蒂",
+  "school.Valkyrie": "瓦尔基丽",
+  "school.ETC": "其他",
+
+  "role.Attacker": "输出",
+  "role.Healer": "治疗",
+  "role.Support": "辅助",
+  "role.TacticalSupport": "战术支援",
+  "role.Tank": "坦克",
+
+  "position.Front": "前排",
+  "position.Middle": "中排",
+  "position.Back": "后排",
+
+  "attack-type.Explosive": "爆发",
+  "attack-type.Penetration": "贯穿",
+  "attack-type.Mystic": "神秘",
+  "attack-type.Sonic": "振动",
+
+  "armor-type.Light": "轻型",
+  "armor-type.Heavy": "重型",
+  "armor-type.Special": "特殊",
+  "armor-type.Elastic": "弹力",
+
+  "combat-classes.Striker": "突击",
+  "combat-classes.Special": "辅助",
+
+  "weapon.AR": "突击步枪",
+  "weapon.FT": "火焰喷射器",
+  "weapon.GL": "榴弹发射器",
+  "weapon.HG": "手枪",
+  "weapon.MG": "重机枪",
+  "weapon.MT": "迫击炮",
+  "weapon.RG": "电磁炮",
+  "weapon.RL": "火箭筒",
+  "weapon.SG": "霰弹枪",
+  "weapon.SMG": "冲锋枪",
+  "weapon.SR": "狙击步枪",
+  "weapon.ETC": "其他",
+
+  "uses-cover.Yes": "是",
+  "uses-cover.No": "否"
+}
