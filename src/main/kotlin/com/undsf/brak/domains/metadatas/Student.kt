@@ -25,7 +25,7 @@ class Student(
     /**
      * 武器类型
      */
-    val weaponType: WeaponType,
+    val weaponType: String,
 
     /**
      * 是否使用掩体

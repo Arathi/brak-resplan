@@ -17,13 +17,17 @@ private val log = LoggerFactory.getLogger(Crawler::class.java)
 class Crawler(
     val proxyHost: String? = null,
     val proxyPort: Int? = null,
-    val cachePath: String = System.getProperty("user.dir") + "/cache"
+    val useCache: Boolean = false,
+    var cachePath: String = ""
 ) {
     var httpClient: OkHttpClient = OkHttpClient()
     var mapper: ObjectMapper = jacksonObjectMapper()
 
     init {
         httpClient = buildHttpClient()
+        if (useCache && cachePath.isEmpty()) {
+            cachePath = System.getProperty("user.dir") + "/cache"
+        }
     }
 
     fun buildHttpClient(): OkHttpClient {
@@ -50,11 +54,6 @@ class Crawler(
             builder.addQueryParameter(it.key, it.value)
         }
 
-        // builder.addQueryParameter("action", "parse")
-        // builder.addQueryParameter("prop", "wikitext")
-        // builder.addQueryParameter("format", "json")
-        // builder.addQueryParameter("page", page)
-
         val url = builder.build()
 
         val request = Request.Builder()
@@ -76,7 +75,7 @@ class Crawler(
 
         try {
             val wikiResp: WikiResponse = mapper.readValue(respBody)
-            log.debug("成功获取响应报文如下：${wikiResp}")
+            log.debug("成功获取响应报文如下：{}", wikiResp)
             return wikiResp
         }
         catch (ex: JacksonException) {
