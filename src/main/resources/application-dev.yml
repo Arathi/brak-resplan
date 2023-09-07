@@ -9,4 +9,9 @@ server:
 brak-resplan:
   crawler:
     proxy:
+      type: HTTP
+      host: 127.0.0.1
       port: 8118
+    cache:
+      enabled: true
+      path: D:\Temp\brak-cache

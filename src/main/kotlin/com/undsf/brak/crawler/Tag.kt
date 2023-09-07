@@ -1,9 +1,10 @@
 package com.undsf.brak.crawler
 
+@Deprecated("改用Properties", replaceWith = ReplaceWith("Properties"))
 class Tag(
     var name: String,
     var properties: MutableMap<String, String> = mutableMapOf()
-): Node("tag") {
+): Node(Type.Properties) {
     fun addProperty(key: String, value: String) {
         properties[key] = value
     }

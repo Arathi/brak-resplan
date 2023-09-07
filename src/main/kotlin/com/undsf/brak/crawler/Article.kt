@@ -6,16 +6,23 @@ import java.io.StringReader
 private val log = LoggerFactory.getLogger(Article::class.java)
 
 class Article(
-    val title: String
+    val title: String,
+    val raw: String? = null,
 ) {
-    private val tags: MutableList<Tag> = mutableListOf()
+    private val nodes: MutableList<Node> = mutableListOf()
 
-    fun addTag(tag: Tag) {
-        tags.add(tag)
+    fun addNode(node: Node) {
+        nodes.add(node)
     }
 
-    fun getTagsByName(name: String): List<Tag> {
-        return tags.filter { t -> t.name == name }
+    fun getPropertiesByName(name: String): List<Properties> {
+        val results = mutableListOf<Properties>()
+        nodes.forEach {
+            if (it is Properties && it.name == name) {
+                results.add(it)
+            }
+        }
+        return results
     }
 
     companion object {
@@ -24,11 +31,11 @@ class Article(
 
         fun parse(title: String, wikiText: String?): Article? {
             if (wikiText == null) return null
-            val article = Article(title)
+            val article = Article(title, wikiText)
 
             val reader = StringReader(wikiText)
             val lines = reader.readLines()
-            var tag: Tag? = null
+            var properties: Properties? = null
 
             for (line in lines) {
                 var matcher = propertiesStart.find(line)
@@ -36,24 +43,24 @@ class Article(
                 if (matcher != null) {
                     val name = matcher.groups[1]?.value
                     if (name != null) {
-                        log.info("获取到properties：${name}")
-                        tag = Tag(name)
+                        log.debug("获取到properties：${name}")
+                        properties = Properties(name)
                         continue
                     }
                 }
 
-                if (tag != null) {
+                if (properties != null) {
                     matcher = property.find(line)
                     if (matcher != null) {
                         val key = matcher.groups[1]?.value
                         val value = matcher.groups[2]?.value
-                        tag.addProperty(key!!, value!!)
+                        properties.addProperty(key!!, value!!)
                         continue
                     }
 
                     if (line.startsWith("}}")) {
-                        article.addTag(tag)
-                        tag = null
+                        article.addNode(properties)
+                        properties = null
                     }
                 }
             }

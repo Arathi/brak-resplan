@@ -10,8 +10,3 @@ enum class Role {
     TacticalSupport, // 战术支援（载具）
     Tank, // 坦克
 }
-
-fun String.toRole(): Role {
-    if (this == "Tactical Support") return Role.TacticalSupport
-    return Role.valueOf(this)
-}

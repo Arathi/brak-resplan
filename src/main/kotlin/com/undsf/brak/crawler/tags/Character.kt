@@ -7,7 +7,7 @@ class Character(
     var JPReading: String? = null,
     var School: String? = null,
     var Club: String? = null,
-    var Age: Int? = null,
+    var Age: String? = null,
     var Birthday: String? = null,
     var Height: String? = null,
     var Hobbies: String? = null,
@@ -27,5 +27,4 @@ class Character(
     var EquipmentSlot3: String? = null,
     var CharacterPool: String? = null,
     var ReleaseDate: String? = null,
-) {
-}
+)

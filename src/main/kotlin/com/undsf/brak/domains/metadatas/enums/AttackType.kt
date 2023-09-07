@@ -9,7 +9,3 @@ enum class AttackType {
     Mystic, // 神秘
     Sonic; // 振动
 }
-
-fun String.toAttackType(): AttackType {
-    return AttackType.valueOf(this)
-}

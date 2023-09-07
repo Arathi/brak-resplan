@@ -1,11 +1,10 @@
 package com.undsf.brak.resplan.controllers
 
-import com.undsf.brak.crawler.Crawler
+import com.undsf.brak.domains.metadatas.Student as StudentMetadata
 import com.undsf.brak.exceptions.DataLoaderException
 import com.undsf.brak.resplan.messages.BasicResponse
 import com.undsf.brak.resplan.messages.DataResponse
 import com.undsf.brak.resplan.services.DataLoaderService
-import jakarta.websocket.RemoteEndpoint.Basic
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PostMapping
@@ -29,6 +28,23 @@ class DataLoaderController {
         }
         catch (ex: DataLoaderException) {
             log.warn("获取角色（${name}）时出现异常：${ex}")
+            return BasicResponse(ex.code)
+        }
+    }
+
+    @PostMapping("/characters")
+    fun loadCharacters(): DataResponse<*> {
+        try {
+            val names = dataLoaderSvc.loadStudentNameList()
+            val students = mutableListOf<StudentMetadata>()
+            for (name in names) {
+                val student = dataLoaderSvc.loadStudentMetadata(name)
+                students.add(student)
+            }
+            return DataResponse(data = students)
+        }
+        catch (ex: DataLoaderException) {
+            log.warn("获取角色列表时出现异常：${ex}")
             return BasicResponse(ex.code)
         }
     }

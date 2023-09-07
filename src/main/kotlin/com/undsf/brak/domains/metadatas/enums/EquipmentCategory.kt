@@ -87,7 +87,3 @@ enum class EquipmentCategory(
     Necklace(3),
     // endregion
 }
-
-fun String.toEquipmentCategory(): EquipmentCategory {
-    return EquipmentCategory.valueOf(this)
-}

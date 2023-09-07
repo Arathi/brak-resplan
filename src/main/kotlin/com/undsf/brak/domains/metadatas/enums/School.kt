@@ -20,10 +20,3 @@ enum class School {
     Valkyrie, // 瓦尔基丽 / 女武神
     ETC; // 其他（目前只有初音未来）
 }
-
-fun String.toSchool(): School {
-    return when (this) {
-        "Red Winter" -> School.RedWinter
-        else -> School.valueOf(this)
-    }
-}

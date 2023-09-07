@@ -18,6 +18,15 @@ class DataLoaderService {
     private lateinit var crawler: Crawler
 
     @Throws(DataLoaderException::class)
+    fun loadStudentNameList(): List<String> {
+        val names = crawler.getCategoryMembers("Characters")
+        if (names.isNotEmpty()) {
+            log.info("获取学生名称 ${names.size} 个")
+        }
+        return names
+    }
+
+    @Throws(DataLoaderException::class)
     fun loadStudentMetadata(name: String): StudentMetadata {
         val pageName = name
         val article = crawler.getArticle(pageName)
@@ -36,7 +45,7 @@ class DataLoaderService {
             id = character.Id!!,
             wikiPage = character.Name!!,
             school = character.School!!.toSchool(),
-            weaponType = character.WeaponType!!.toWeaponType(),
+            weaponType = character.WeaponType!!,
             usesCover = (character.UsesCover == "Yes"),
             rarity = character.Rarity!!,
             combatClass = character.CombatClass!!.toCombatClass(),
@@ -55,7 +64,7 @@ class DataLoaderService {
         )
 
         // TODO 加载角色其他信息
-        
+
         // TODO 角色信息入库
 
         return student

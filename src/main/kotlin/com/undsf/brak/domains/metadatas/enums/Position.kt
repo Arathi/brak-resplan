@@ -8,7 +8,3 @@ enum class Position {
     Middle, // 中排
     Back; // 后排
 }
-
-fun String.toPosition(): Position {
-    return Position.valueOf(this)
-}

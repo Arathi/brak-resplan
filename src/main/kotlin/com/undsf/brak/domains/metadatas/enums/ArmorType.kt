@@ -9,7 +9,3 @@ enum class ArmorType {
     Special, // 特殊
     Elastic; // 弹力
 }
-
-fun String.toArmorType(): ArmorType {
-    return ArmorType.valueOf(this)
-}
